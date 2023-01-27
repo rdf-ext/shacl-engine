@@ -1,0 +1,50 @@
+{
+  "name": "shacl-engine",
+  "version": "0.0.0",
+  "description": "A fast RDF/JS SHACL engine",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "stricter-standard && c8 --reporter=lcov --reporter=text-summary mocha --delay"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bergos/shacl-engine.git"
+  },
+  "keywords": [
+    "rdf",
+    "rdfjs",
+    "shacl"
+  ],
+  "author": "Thomas Bergwinkl <bergi@axolotlfarm.org> (https://www.bergnet.org/people/bergi/card#me)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bergos/shacl-engine/issues"
+  },
+  "homepage": "https://github.com/bergos/shacl-engine",
+  "dependencies": {
+    "@rdfjs/namespace": "^2.0.0",
+    "@rdfjs/term-map": "^2.0.0",
+    "@rdfjs/term-set": "^2.0.1",
+    "@rdfjs/to-ntriples": "^2.0.0",
+    "grapoi": "^1.0.0",
+    "lodash": "^4.17.21",
+    "rdf-literal": "^1.3.1",
+    "rdf-validate-datatype": "^0.1.5"
+  },
+  "devDependencies": {
+    "@rdfjs/data-model": "^2.0.1",
+    "@rdfjs/dataset": "^2.0.1",
+    "@rdfjs/environment": "^0.1.2",
+    "@rdfjs/normalize": "^2.0.0",
+    "@rdfjs/parser-n3": "^2.0.1",
+    "@rdfjs/traverser": "^0.1.1",
+    "c8": "^7.12.0",
+    "mocha": "^10.2.0",
+    "rdf-test": "^0.1.0",
+    "rdf-utils-fs": "^2.3.0",
+    "readable-stream": "^4.3.0",
+    "stream-chunks": "^1.0.0",
+    "stricter-standard": "^0.2.0"
+  }
+}
