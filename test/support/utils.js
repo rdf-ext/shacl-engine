@@ -108,6 +108,8 @@ function normalizeReport (report, expected) {
     grapoi(report.ptr).node().deleteOut(ns.sh.resultMessage)
   }
 
+  expected.node().deleteOut(ns.sh.resultMessage, rdf.literal('false', ns.xsd.boolean))
+
   // reduce report graph to a defined subset of properties
   return reportSubgraph().match({ dataset: expected.dataset, term: expected.term })
 }
@@ -171,6 +173,8 @@ function runTest (test) {
       const expected = await parseString('text/turtle', test.result.out(ns.sht.coverage).value)
 
       datasetEqual(coverage, expected)
+    } else {
+      throw new Error(`unknown test type: ${test.resultType.value}`)
     }
   })
 }

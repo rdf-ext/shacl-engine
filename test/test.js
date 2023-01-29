@@ -2,23 +2,30 @@ import { describe, run } from 'mocha'
 import { loadTests, runTests } from './support/utils.js'
 
 (async () => {
-  const coverageTests = await loadTests(new URL('assets/coverage/manifest.ttl', import.meta.url))
+  try {
+    const files = {
+      'coverage report': 'assets/coverage/manifest.ttl',
+      'data-shapes test suite': 'assets/data-shapes/manifest.ttl',
+      'result details': 'assets/details/manifest.ttl',
+      message: 'assets/message/manifest.ttl',
+      miscellaneous: 'assets/misc/manifest.ttl',
+      severity: 'assets/severity/manifest.ttl'
+    }
 
-  describe('coverage report', () => {
-    runTests(coverageTests)
-  })
+    const tests = {}
 
-  const dataShapesTests = await loadTests(new URL('assets/data-shapes/manifest.ttl', import.meta.url))
+    for (const [name, file] of Object.entries(files)) {
+      tests[name] = await loadTests(new URL(file, import.meta.url))
+    }
 
-  describe('data-shapes test suite', () => {
-    runTests(dataShapesTests)
-  })
-
-  const detailTests = await loadTests(new URL('assets/details/manifest.ttl', import.meta.url))
-
-  describe('result details', () => {
-    runTests(detailTests)
-  })
+    for (const [name, bundle] of Object.entries(tests)) {
+      describe(name, () => {
+        runTests(bundle)
+      })
+    }
+  } catch (err) {
+    console.error(err)
+  }
 
   run()
 })()
