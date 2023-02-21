@@ -2,6 +2,7 @@
 @prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix shn: <https://schemas.link/shacl-next#>.
 @prefix sht: <http://www.w3.org/ns/shacl-test#>.
 
 ex:APGARObservationShape a sh:NodeShape;
@@ -72,14 +73,14 @@ ex:Observation1c-a
         sh:detail [ a sh:ValidationResult;
           sh:focusNode ex:Observation1b-a;
           sh:resultPath ex:reference;
-          sh:resultSeverity sh:Debug;
+          sh:resultSeverity shn:Debug;
           sh:sourceConstraintComponent sh:HasValueConstraintComponent;
           sh:sourceShape ex:APGARObservationShape-related-a-a-a-a;
           sh:value ex:Observation1b-a
         ];
         sh:focusNode ex:Observation1b;
         sh:resultPath ex:related_target;
-        sh:resultSeverity sh:Debug;
+        sh:resultSeverity shn:Debug;
         sh:sourceConstraintComponent sh:NodeConstraintComponent;
         sh:sourceShape ex:APGARObservationShape-related-a-a;
         sh:value ex:Observation1b-a
@@ -87,14 +88,14 @@ ex:Observation1c-a
         sh:detail [ a sh:ValidationResult;
           sh:focusNode ex:Observation1a-a;
           sh:resultPath ex:reference;
-          sh:resultSeverity sh:Debug;
+          sh:resultSeverity shn:Debug;
           sh:sourceConstraintComponent sh:HasValueConstraintComponent;
           sh:sourceShape ex:APGARObservationShape-related-a-a-a-a;
           sh:value ex:Observation1a-a
         ];
         sh:focusNode ex:Observation1a;
         sh:resultPath ex:related_target;
-        sh:resultSeverity sh:Debug;
+        sh:resultSeverity shn:Debug;
         sh:sourceConstraintComponent sh:NodeConstraintComponent;
         sh:sourceShape ex:APGARObservationShape-related-a-a;
         sh:value ex:Observation1a-a
@@ -124,14 +125,14 @@ ex:Observation1c-a
         sh:detail [ a sh:ValidationResult;
           sh:focusNode ex:Observation1a-a;
           sh:resultPath ex:reference;
-          sh:resultSeverity sh:Debug;
+          sh:resultSeverity shn:Debug;
           sh:sourceConstraintComponent sh:HasValueConstraintComponent;
           sh:sourceShape ex:APGARObservationShape-related-a-a-a-a;
           sh:value ex:Observation1a-a
         ];
         sh:focusNode ex:Observation1a;
         sh:resultPath ex:related_target;
-        sh:resultSeverity sh:Debug;
+        sh:resultSeverity shn:Debug;
         sh:sourceConstraintComponent sh:NodeConstraintComponent;
         sh:sourceShape ex:APGARObservationShape-related-a-a;
         sh:value ex:Observation1a-a
@@ -154,21 +155,21 @@ ex:Observation1c-a
         sh:detail [ a sh:ValidationResult;
           sh:focusNode ex:Observation1b-a;
           sh:resultPath ex:reference;
-          sh:resultSeverity sh:Debug;
+          sh:resultSeverity shn:Debug;
           sh:sourceConstraintComponent sh:HasValueConstraintComponent;
           sh:sourceShape ex:APGARObservationShape-related-a-a-a-a;
           sh:value ex:Observation1b-a
         ];
         sh:focusNode ex:Observation1b;
         sh:resultPath ex:related_target;
-        sh:resultSeverity sh:Debug;
+        sh:resultSeverity shn:Debug;
         sh:sourceConstraintComponent sh:NodeConstraintComponent;
         sh:sourceShape ex:APGARObservationShape-related-a-a;
         sh:value ex:Observation1b-a
       ];
       sh:focusNode ex:Observation1;
       sh:resultPath ex:related;
-      sh:resultSeverity sh:Debug;
+      sh:resultSeverity shn:Debug;
       sh:sourceConstraintComponent sh:QualifiedMaxCountConstraintComponent;
       sh:sourceShape ex:APGARObservationShape-related
     ]

@@ -2,6 +2,7 @@
 @prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix shn: <https://schemas.link/shacl-next#>.
 @prefix sht: <http://www.w3.org/ns/shacl-test#>.
 
 ex:InvalidResource1 a rdfs:Resource;
@@ -42,13 +43,13 @@ ex:ValidResource1 a rdfs:Resource.
       sh:detail [ a sh:ValidationResult;
         sh:focusNode ex:InvalidResource1;
         sh:resultPath ex:property;
-        sh:resultSeverity sh:Debug;
+        sh:resultSeverity shn:Debug;
         sh:sourceConstraintComponent sh:MinCountConstraintComponent;
         sh:sourceShape _:not
       ]
     ], [ a sh:ValidationResult;
       sh:focusNode ex:ValidResource1;
-      sh:resultSeverity sh:Debug;
+      sh:resultSeverity shn:Debug;
       sh:sourceConstraintComponent sh:NotConstraintComponent;
       sh:sourceShape ex:TestShape;
       sh:value ex:ValidResource1;

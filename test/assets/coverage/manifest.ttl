@@ -3,4 +3,6 @@
 
 <> a mf:Manifest;
   rdfs:label "Custom coverage tests";
-  mf:include <list.ttl>.
+  mf:include
+    <and-traversal.ttl>,
+    <list.ttl>.
