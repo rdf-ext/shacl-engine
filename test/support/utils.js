@@ -159,9 +159,10 @@ function runTest (test) {
 
   it(label.value, async () => {
     if (ns.sh.ValidationReport.equals(test.resultType)) {
-      const debug = test.result.out(ns.sh.result).out(ns.sh.resultSeverity, ns.sh.Debug).terms.length > 0
+      const coverage = test.result.node(null).out(ns.sh.resultSeverity, ns.shn.Trace).terms.length > 0
+      const debug = test.result.out(ns.sh.result).out(ns.sh.resultSeverity, ns.shn.Debug).terms.length > 0
       const details = test.result.out(ns.sh.result).out(ns.sh.detail).terms.length > 0
-      const validator = new Validator(test.shapes, { debug, details, factory: rdf })
+      const validator = new Validator(test.shapes, { coverage, debug, details, factory: rdf })
       const report = await validator.validate({ dataset: test.data })
       const expected = normalizeReport(report, test.result)
 

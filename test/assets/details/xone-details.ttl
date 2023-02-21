@@ -2,6 +2,7 @@
 @prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix shn: <https://schemas.link/shacl-next#>.
 @prefix sht: <http://www.w3.org/ns/shacl-test#>.
 
 ex:Bob a ex:Person;
@@ -58,21 +59,21 @@ _:lastName
         sh:focusNode ex:Dory;
         sh:resultMessage "Less than 1 values";
         sh:resultPath ex:firstName;
-        sh:resultSeverity sh:Debug;
+        sh:resultSeverity shn:Debug;
         sh:sourceConstraintComponent sh:MinCountConstraintComponent;
         sh:sourceShape _:firstName
       ], [ a sh:ValidationResult;
         sh:focusNode ex:Dory;
         sh:resultMessage "Less than 1 values";
         sh:resultPath ex:fullName;
-        sh:resultSeverity sh:Debug;
+        sh:resultSeverity shn:Debug;
         sh:sourceConstraintComponent sh:MinCountConstraintComponent;
         sh:sourceShape _:fullName
       ], [ a sh:ValidationResult;
         sh:focusNode ex:Dory;
         sh:resultMessage "Less than 1 values";
         sh:resultPath ex:lastName;
-        sh:resultSeverity sh:Debug;
+        sh:resultSeverity shn:Debug;
         sh:sourceConstraintComponent sh:MinCountConstraintComponent;
         sh:sourceShape _:lastName
       ];
@@ -86,14 +87,14 @@ _:lastName
         sh:focusNode ex:Bob;
         sh:resultMessage "Less than 1 values";
         sh:resultPath ex:lastName;
-        sh:resultSeverity sh:Debug;
+        sh:resultSeverity shn:Debug;
         sh:sourceConstraintComponent sh:MinCountConstraintComponent;
         sh:sourceShape _:lastName
       ], [ a sh:ValidationResult;
         sh:focusNode ex:Bob;
         sh:resultMessage "Less than 1 values";
         sh:resultPath ex:firstName;
-        sh:resultSeverity sh:Debug;
+        sh:resultSeverity shn:Debug;
         sh:sourceConstraintComponent sh:MinCountConstraintComponent;
         sh:sourceShape _:firstName
       ], [ a sh:ValidationResult;
@@ -114,7 +115,7 @@ _:lastName
         sh:focusNode ex:Carla;
         sh:resultMessage "Less than 1 values";
         sh:resultPath ex:fullName;
-        sh:resultSeverity sh:Debug;
+        sh:resultSeverity shn:Debug;
         sh:sourceConstraintComponent sh:MinCountConstraintComponent;
         sh:sourceShape _:fullName
       ], [ a sh:ValidationResult;
@@ -133,7 +134,7 @@ _:lastName
         sh:sourceShape _:firstName
       ];
       sh:focusNode ex:Carla;
-      sh:resultSeverity sh:Debug;
+      sh:resultSeverity shn:Debug;
       sh:sourceConstraintComponent sh:XoneConstraintComponent;
       sh:sourceShape ex:XoneConstraintExampleShape;
       sh:value ex:Carla

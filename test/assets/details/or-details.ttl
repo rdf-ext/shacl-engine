@@ -2,6 +2,7 @@
 @prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix shn: <https://schemas.link/shacl-next#>.
 @prefix sht: <http://www.w3.org/ns/shacl-test#>.
 
 ex:InvalidRectangle1 a ex:RectangleWithArea;
@@ -71,19 +72,19 @@ ex:ValidRectangle3 a ex:RectangleWithArea;
         sh:focusNode ex:ValidRectangle1;
         sh:resultMessage "Less than 1 values";
         sh:resultPath ex:width;
-        sh:resultSeverity sh:Debug;
+        sh:resultSeverity shn:Debug;
         sh:sourceConstraintComponent sh:MinCountConstraintComponent;
         sh:sourceShape _:minCountWidth
       ], [ a sh:ValidationResult;
         sh:focusNode ex:ValidRectangle1;
         sh:resultMessage "Less than 1 values";
         sh:resultPath ex:height;
-        sh:resultSeverity sh:Debug;
+        sh:resultSeverity shn:Debug;
         sh:sourceConstraintComponent sh:MinCountConstraintComponent;
         sh:sourceShape _:minCountHeight
       ];
       sh:focusNode ex:ValidRectangle1;
-      sh:resultSeverity sh:Debug;
+      sh:resultSeverity shn:Debug;
       sh:sourceConstraintComponent sh:OrConstraintComponent;
       sh:sourceShape ex:RectangleWithArea;
       sh:value ex:ValidRectangle1
@@ -134,12 +135,12 @@ ex:ValidRectangle3 a ex:RectangleWithArea;
         sh:focusNode ex:InvalidRectangle1;
         sh:resultMessage "Less than 1 values";
         sh:resultPath ex:height;
-        sh:resultSeverity sh:Debug;
+        sh:resultSeverity shn:Debug;
         sh:sourceConstraintComponent sh:MinCountConstraintComponent;
         sh:sourceShape _:minCountHeight
       ];
       sh:focusNode ex:InvalidRectangle1;
-      sh:resultSeverity sh:Debug;
+      sh:resultSeverity shn:Debug;
       sh:sourceConstraintComponent sh:OrConstraintComponent;
       sh:sourceShape ex:RectangleWithArea;
       sh:value ex:InvalidRectangle1
@@ -148,26 +149,26 @@ ex:ValidRectangle3 a ex:RectangleWithArea;
         sh:focusNode ex:ValidRectangle2;
         sh:resultMessage "Less than 1 values";
         sh:resultPath ex:height;
-        sh:resultSeverity sh:Debug;
+        sh:resultSeverity shn:Debug;
         sh:sourceConstraintComponent sh:MinCountConstraintComponent;
         sh:sourceShape _:minCountHeight
       ], [ a sh:ValidationResult;
         sh:focusNode ex:ValidRectangle2;
         sh:resultMessage "Less than 1 values";
         sh:resultPath ex:width;
-        sh:resultSeverity sh:Debug;
+        sh:resultSeverity shn:Debug;
         sh:sourceConstraintComponent sh:MinCountConstraintComponent;
         sh:sourceShape _:minCountWidth
       ], [ a sh:ValidationResult;
         sh:focusNode ex:ValidRectangle2;
         sh:resultMessage "Less than 1 values";
         sh:resultPath ex:area;
-        sh:resultSeverity sh:Debug;
+        sh:resultSeverity shn:Debug;
         sh:sourceConstraintComponent sh:MinCountConstraintComponent;
         sh:sourceShape _:minCountArea
       ];
       sh:focusNode ex:ValidRectangle2;
-      sh:resultSeverity sh:Debug;
+      sh:resultSeverity shn:Debug;
       sh:sourceConstraintComponent sh:OrConstraintComponent;
       sh:sourceShape ex:RectangleWithArea;
       sh:value ex:ValidRectangle2
@@ -176,7 +177,7 @@ ex:ValidRectangle3 a ex:RectangleWithArea;
         sh:focusNode ex:ValidRectangle3;
         sh:resultMessage "Less than 1 values";
         sh:resultPath ex:height;
-        sh:resultSeverity sh:Debug;
+        sh:resultSeverity shn:Debug;
         sh:sourceConstraintComponent sh:MinCountConstraintComponent;
         sh:sourceShape _:minCountHeight
       ], [ a sh:ValidationResult;
@@ -190,12 +191,12 @@ ex:ValidRectangle3 a ex:RectangleWithArea;
         sh:focusNode ex:ValidRectangle3;
         sh:resultMessage "Less than 1 values";
         sh:resultPath ex:area;
-        sh:resultSeverity sh:Debug;
+        sh:resultSeverity shn:Debug;
         sh:sourceConstraintComponent sh:MinCountConstraintComponent;
         sh:sourceShape _:minCountArea
       ];
       sh:focusNode ex:ValidRectangle3;
-      sh:resultSeverity sh:Debug;
+      sh:resultSeverity shn:Debug;
       sh:sourceConstraintComponent sh:OrConstraintComponent;
       sh:sourceShape ex:RectangleWithArea;
       sh:value ex:ValidRectangle3

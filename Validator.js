@@ -14,6 +14,7 @@ class Validator {
     if (this.options.coverage) {
       this.options.debug = true
       this.options.details = true
+      this.options.trace = true
     }
 
     const shapePtrs = [
