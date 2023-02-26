@@ -42,10 +42,11 @@ The constructor must be called with the shapes as an RDF/JS [DatasetCore](https:
 The second argument is an object for various options:
 
 - `coverage`: Boolean flag to enable collecting covered quads. (*optional*)
-  If coverage is enabled, `debug` and `details` are also enabled.
+  If coverage is enabled, `debug`, `details`, and `trace` are also enabled.
 - `debug`: Generate debug results for successful validations. (*optional*)
 - `details`: Generate nested result details. (*optional*)
 - `factory`: A RDF/JS [DataFactory](http://rdf.js.org/data-model-spec/#datafactory-interface), which is used to generate the report (*required*).
+- `trace`: Generate results for path traversing. (*optional*)
 
 The validations can be executed with the `.validate(data, shapes)` method.
 The data must have the following structure:
