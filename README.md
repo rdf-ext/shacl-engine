@@ -1,6 +1,6 @@
 # shacl-engine
 
-[![build status](https://img.shields.io/github/actions/workflow/status/bergos/shacl-engine/test.yaml?branch=master)](https://github.com/bergos/shacl-engine/actions/workflows/test.yaml)
+[![build status](https://img.shields.io/github/actions/workflow/status/rdf-ext/shacl-engine/test.yaml?branch=master)](https://github.com/rdf-ext/shacl-engine/actions/workflows/test.yaml)
 [![npm version](https://img.shields.io/npm/v/shacl-engine.svg)](https://www.npmjs.com/package/shacl-engine)
 
 A fast [SHACL](https://www.w3.org/TR/shacl/) engine for data provided as [RDF/JS](http://rdf.js.org/data-model-spec/) objects.
