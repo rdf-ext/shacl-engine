@@ -1,6 +1,6 @@
 {
   "name": "shacl-engine",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A fast RDF/JS SHACL engine",
   "type": "module",
   "main": "index.js",
