@@ -5,4 +5,5 @@
   rdfs:label "Custom coverage tests";
   mf:include
     <and-traversal.ttl>,
-    <list.ttl>.
+    <list.ttl>,
+    <multi-node.ttl>.
