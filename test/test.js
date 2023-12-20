@@ -10,7 +10,8 @@ import { loadTests, runTests } from './support/utils.js'
       'result details': 'assets/details/manifest.ttl',
       message: 'assets/message/manifest.ttl',
       miscellaneous: 'assets/misc/manifest.ttl',
-      severity: 'assets/severity/manifest.ttl'
+      severity: 'assets/severity/manifest.ttl',
+      sparql: 'assets/sparql/manifest.ttl'
     }
 
     const tests = {}

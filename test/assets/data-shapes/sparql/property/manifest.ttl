@@ -4,6 +4,6 @@
 
 <>
 	a mf:Manifest ;
-	mf:include <core/manifest.ttl> ;
-	mf:include <sparql/manifest.ttl> ;
+	rdfs:label "Tests converted from http://datashapes.org/sh/tests/tests/sparql/property" ;
+	mf:include <sparql-001.ttl> ;
 	.
