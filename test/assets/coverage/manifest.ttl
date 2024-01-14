@@ -6,4 +6,5 @@
   mf:include
     <and-traversal.ttl>,
     <list.ttl>,
-    <multi-node.ttl>.
+    <multi-node.ttl>,
+    <subClassOf-self-ref.ttl>.
