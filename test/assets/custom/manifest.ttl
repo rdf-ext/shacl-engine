@@ -4,4 +4,7 @@
 <> a mf:Manifest;
   rdfs:label "Custom tests";
   mf:include
-    <qualifiedValueShape.ttl>.
+    <and-multi-list.ttl>,
+    <or-multi-list.ttl>,
+    <qualifiedValueShape.ttl>,
+    <xone-multi-list.ttl>.
