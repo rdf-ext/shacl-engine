@@ -1,3 +1,4 @@
+import { strictEqual } from 'node:assert'
 import ParserN3 from '@rdfjs/parser-n3'
 import TermSet from '@rdfjs/term-set'
 import grapoi from 'grapoi'
@@ -174,6 +175,11 @@ function runTest (test) {
       const expected = await parseString('text/turtle', test.result.out(ns.sht.coverage).value)
 
       datasetEqual(coverage, expected)
+    } else if (ns.sht.Failure.equals(test.result.term)) {
+      const validator = new Validator(test.shapes, { factory: rdf })
+      const report = await validator.validate({ dataset: test.data })
+
+      strictEqual(report.conforms, false)
     } else {
       throw new Error(`unknown test type: ${test.resultType.value}`)
     }

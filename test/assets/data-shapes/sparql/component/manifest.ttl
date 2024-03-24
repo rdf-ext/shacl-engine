@@ -4,6 +4,8 @@
 
 <>
 	a mf:Manifest ;
-	mf:include <core/manifest.ttl> ;
-	mf:include <sparql/manifest.ttl> ;
+	rdfs:label "Tests converted from http://datashapes.org/sh/tests/tests/sparql/component" ;
+	mf:include <optional-001.ttl> ;
+	mf:include <propertyValidator-select-001.ttl> ;
+	mf:include <validator-001.ttl> ;
 	.
