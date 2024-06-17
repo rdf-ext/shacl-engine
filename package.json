@@ -45,6 +45,6 @@
     "rdf-utils-fs": "^2.3.0",
     "readable-stream": "^4.3.0",
     "stream-chunks": "^1.0.0",
-    "stricter-standard": "^0.2.0"
+    "stricter-standard": "^0.3.1"
   }
 }
