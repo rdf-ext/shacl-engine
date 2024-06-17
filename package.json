@@ -35,7 +35,7 @@
   "devDependencies": {
     "@rdfjs/data-model": "^2.0.1",
     "@rdfjs/dataset": "^2.0.1",
-    "@rdfjs/environment": "^0.1.2",
+    "@rdfjs/environment": "^1.0.0",
     "@rdfjs/normalize": "^2.0.0",
     "@rdfjs/parser-n3": "^2.0.1",
     "@rdfjs/traverser": "^0.1.1",
