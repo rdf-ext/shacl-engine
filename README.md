@@ -93,3 +93,19 @@ main()
 ```
 
 See the `examples` folders for more examples.
+
+### SPARQL Support
+
+The `Validator` comes with the core SHACL validations out-of-the-box.
+Additional validations must be added for SPARQL support.
+The validations can be imported from `shacl-engine/sparql.js` as shown below:
+
+```javascript
+import rdfDataModel from '@rdfjs/data-model'
+import { validations as sparqlValidations } from 'shacl-engine/sparql.js'
+
+const validator = new Validator(dataset, {
+  factory: rdfDataModel,
+  validations: sparqlValidations
+})
+```
