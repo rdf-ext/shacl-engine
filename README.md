@@ -12,7 +12,7 @@ Here is an overview of the features this library implements and planned features
 
 - [X] [SHACL Validation](https://www.w3.org/TR/shacl/#validation)
   - [X] [SHACL Core Constraint Components](https://www.w3.org/TR/shacl/#core-components)
-  - [ ] [SHACL SPARQL-based Constraints](https://www.w3.org/TR/shacl/#sparql-constraints)
+  - [X] [SHACL SPARQL-based Constraints](https://www.w3.org/TR/shacl/#sparql-constraints)
 - [ ] [SHACL JavaScript Extensions](https://www.w3.org/TR/shacl-js/)
 - [ ] [SHACL Advanced Features](https://w3c.github.io/shacl/shacl-af/)
 
@@ -93,3 +93,19 @@ main()
 ```
 
 See the `examples` folders for more examples.
+
+### SPARQL Support
+
+The `Validator` comes with the core SHACL validations out-of-the-box.
+Additional validations must be added for SPARQL support.
+The validations can be imported from `shacl-engine/sparql.js` as shown below:
+
+```javascript
+import rdfDataModel from '@rdfjs/data-model'
+import { validations as sparqlValidations } from 'shacl-engine/sparql.js'
+
+const validator = new Validator(dataset, {
+  factory: rdfDataModel,
+  validations: sparqlValidations
+})
+```

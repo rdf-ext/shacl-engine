@@ -2,12 +2,15 @@ import TermMap from '@rdfjs/term-map'
 import { PathList } from 'grapoi'
 import Context from './lib/Context.js'
 import * as ns from './lib/namespaces.js'
+import Registry from './lib/Registry.js'
 import Shape from './lib/Shape.js'
+import validations from './lib/validations.js'
 
 class Validator {
   constructor (dataset, { factory, ...options }) {
     this.factory = factory
     this.options = options
+    this.registry = new Registry(validations)
     this.shapesPtr = new PathList({ dataset, factory })
     this.shapes = new TermMap()
 
@@ -15,6 +18,12 @@ class Validator {
       this.options.debug = true
       this.options.details = true
       this.options.trace = true
+    }
+
+    if (this.options.validations) {
+      for (const [key, value] of this.options.validations) {
+        this.registry.validations.set(key, value)
+      }
     }
 
     const shapePtrs = [

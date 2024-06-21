@@ -1,3 +1,4 @@
+import { strictEqual } from 'node:assert'
 import ParserN3 from '@rdfjs/parser-n3'
 import TermSet from '@rdfjs/term-set'
 import grapoi from 'grapoi'
@@ -154,7 +155,7 @@ const reportSubgraph = () => {
   })
 }
 
-function runTest (test) {
+function runTest (test, { validations } = {}) {
   const label = test.entry.out(ns.rdfs.label)
 
   it(label.value, async () => {
@@ -162,27 +163,32 @@ function runTest (test) {
       const coverage = test.result.node(null).out(ns.sh.resultSeverity, ns.shn.Trace).terms.length > 0
       const debug = test.result.out(ns.sh.result).out(ns.sh.resultSeverity, ns.shn.Debug).terms.length > 0
       const details = test.result.out(ns.sh.result).out(ns.sh.detail).terms.length > 0
-      const validator = new Validator(test.shapes, { coverage, debug, details, factory: rdf })
+      const validator = new Validator(test.shapes, { coverage, debug, details, factory: rdf, validations })
       const report = await validator.validate({ dataset: test.data })
       const expected = normalizeReport(report, test.result)
 
       datasetEqual(report.dataset, expected)
     } else if (ns.sht.Coverage.equals(test.resultType)) {
-      const validator = new Validator(test.shapes, { coverage: true, factory: rdf })
+      const validator = new Validator(test.shapes, { coverage: true, factory: rdf, validations })
       const report = await validator.validate({ dataset: test.data })
       const coverage = rdf.dataset(report.coverage())
       const expected = await parseString('text/turtle', test.result.out(ns.sht.coverage).value)
 
       datasetEqual(coverage, expected)
+    } else if (ns.sht.Failure.equals(test.result.term)) {
+      const validator = new Validator(test.shapes, { factory: rdf, validations })
+      const report = await validator.validate({ dataset: test.data })
+
+      strictEqual(report.conforms, false)
     } else {
       throw new Error(`unknown test type: ${test.resultType.value}`)
     }
   })
 }
 
-function runTests (tests) {
+function runTests (tests, { validations } = {}) {
   for (const test of tests) {
-    runTest(test)
+    runTest(test, { validations })
   }
 }
 
