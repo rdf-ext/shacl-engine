@@ -12,7 +12,7 @@ Here is an overview of the features this library implements and planned features
 
 - [X] [SHACL Validation](https://www.w3.org/TR/shacl/#validation)
   - [X] [SHACL Core Constraint Components](https://www.w3.org/TR/shacl/#core-components)
-  - [ ] [SHACL SPARQL-based Constraints](https://www.w3.org/TR/shacl/#sparql-constraints)
+  - [X] [SHACL SPARQL-based Constraints](https://www.w3.org/TR/shacl/#sparql-constraints)
 - [ ] [SHACL JavaScript Extensions](https://www.w3.org/TR/shacl-js/)
 - [ ] [SHACL Advanced Features](https://w3c.github.io/shacl/shacl-af/)
 
