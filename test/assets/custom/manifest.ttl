@@ -5,6 +5,7 @@
   rdfs:label "Custom tests";
   mf:include
     <and-multi-list.ttl>,
+    <circular.ttl>,
     <deactivated-closed.ttl>,
     <or-multi-list.ttl>,
     <qualifiedValueShape.ttl>,
