@@ -5,16 +5,30 @@
 
 A fast [SHACL](https://www.w3.org/TR/shacl/) engine for data provided as [RDF/JS](http://rdf.js.org/data-model-spec/) objects.
 
+The package can be tested on the [SHACL Playground](https://playground.rdf-ext.org/shacl/), which runs client-side in the browser.
+Additionally, with [rdf-ext-cli](https://github.com/rdf-ext/rdf-ext-cli), there is a command-line tool for validating RDF data from files, URLs, or even SPARQL endpoints.
+
 ## Features
 
 SHACL consists of multiple modules.
-Here is an overview of the features this library implements and planned features:
+Here is an overview of SHACL features this library implements and planned features:
 
 - [X] [SHACL Validation](https://www.w3.org/TR/shacl/#validation)
   - [X] [SHACL Core Constraint Components](https://www.w3.org/TR/shacl/#core-components)
   - [X] [SHACL SPARQL-based Constraints](https://www.w3.org/TR/shacl/#sparql-constraints)
 - [ ] [SHACL JavaScript Extensions](https://www.w3.org/TR/shacl-js/)
 - [ ] [SHACL Advanced Features](https://w3c.github.io/shacl/shacl-af/)
+
+Additional features include:
+
+- Debug output in the validation report, showing passed validations and traversing steps.
+- Coverage support, providing a subgraph of all triples covered by the shape.
+
+### Performance
+
+The package offers significant performance improvements, being 15-26x faster than other JavaScript or Python packages.
+It demonstrates a 15x speed boost in a benchmark that validates [shacl-shacl](https://www.w3.org/TR/shacl/#shacl-shacl) shapes against themselves, with even greater gains (26x faster) in larger, [real-world examples](https://github.com/rdf-ext/shacl-engine/issues/12#issuecomment-1940875628).
+For more details about the benchmark, see [this blog post](https://www.bergnet.org/2023/03/2023/shacl-engine/).
 
 ## Install
 
