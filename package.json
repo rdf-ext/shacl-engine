@@ -24,7 +24,7 @@
   "homepage": "https://github.com/rdf-ext/shacl-engine",
   "dependencies": {
     "@comunica/bindings-factory": "^3.1.0",
-    "@comunica/query-sparql-rdfjs-lite": "^3.1.2",
+    "@comunica/query-sparql-rdfjs-lite": "^4.0.1",
     "@rdfjs/namespace": "^2.0.0",
     "@rdfjs/term-map": "^2.0.0",
     "@rdfjs/term-set": "^2.0.1",
