@@ -43,7 +43,7 @@
     "@rdfjs/parser-n3": "^2.0.1",
     "@rdfjs/traverser": "^0.1.1",
     "c8": "^10.1.2",
-    "mocha": "^10.2.0",
+    "mocha": "^11.0.1",
     "rdf-test": "^0.1.0",
     "rdf-utils-fs": "^3.0.0",
     "stream-chunks": "^1.0.0",
