@@ -7,6 +7,7 @@ import { loadTests, runTests } from './support/utils.js'
     const files = {
       'coverage report': 'assets/coverage/manifest.ttl',
       custom: 'assets/custom/manifest.ttl',
+      custom12: 'assets/custom12/manifest.ttl',
       'data-shapes test suite': 'assets/data-shapes/manifest.ttl',
       'result details': 'assets/details/manifest.ttl',
       message: 'assets/message/manifest.ttl',

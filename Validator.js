@@ -1,6 +1,8 @@
 import TermMap from '@rdfjs/term-map'
 import { PathList } from 'grapoi'
 import Context from './lib/Context.js'
+import FunctionRegistry from './lib/FunctionRegistry.js'
+import functions from './lib/functions.js'
 import * as ns from './lib/namespaces.js'
 import Registry from './lib/Registry.js'
 import Shape from './lib/Shape.js'
@@ -10,6 +12,8 @@ class Validator {
   constructor (dataset, { factory, ...options }) {
     this.factory = factory
     this.options = options
+
+    this.functionRegistry = new FunctionRegistry(functions)
     this.registry = new Registry(validations)
     this.shapesPtr = new PathList({ dataset, factory })
     this.shapes = new TermMap()
@@ -57,7 +61,7 @@ class Validator {
 
   async validate (data, shapes) {
     const focusNode = new PathList({ ...data, factory: this.factory })
-    const context = new Context({ factory: this.factory, focusNode, options: this.options, validator: this })
+    const context = new Context({ factory: this.factory, focusNode, options: this.options })
 
     if (shapes) {
       // if shapes are given, use only the term for the lookup in the ptr from the constructor

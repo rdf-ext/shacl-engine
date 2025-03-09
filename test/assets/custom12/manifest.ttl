@@ -1,0 +1,16 @@
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+
+<> a mf:Manifest;
+  rdfs:label "Custom tests for 1.2 features";
+  mf:include
+    <node-exp-in-complex-path.ttl>,
+    <node-exp-in-computed-path.ttl>,
+    <node-exp-in-computed-values.ttl>,
+    <node-exp-in-nested-list.ttl>,
+    <node-exp-in-path.ttl>,
+    <node-exp-in-values.ttl>,
+    <node-exp-max-exclusive.ttl>,
+    <node-exp-max-inclusive.ttl>,
+    <node-exp-min-exclusive.ttl>,
+    <node-exp-min-inclusive.ttl>.

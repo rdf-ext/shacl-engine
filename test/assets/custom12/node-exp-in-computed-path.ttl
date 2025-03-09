@@ -1,0 +1,54 @@
+@prefix ex: <http://example.org/>.
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix shn: <https://schemas.link/shacl-next#>.
+@prefix sht: <http://www.w3.org/ns/shacl-test#>.
+
+<> a mf:Manifest;
+  mf:entries (<node-exp-in-computed-path>).
+
+ex:data
+  ex:property1 3E0;
+  ex:property2 2E0.
+
+ex:PropertyShape a sh:PropertyShape;
+  sh:in [
+      shn:add (1E0 _:b1)
+    ];
+  sh:path ex:property1.
+
+ex:RootShape a sh:NodeShape;
+  sh:property ex:PropertyShape;
+  sh:targetNode ex:data.
+
+<node-exp-in-computed-path> a sht:Validate;
+  rdfs:label "Test of sh:in node expression with computed sh:path";
+  mf:action [
+      sht:dataGraph <>;
+      sht:shapesGraph <>
+    ];
+  mf:result [ a sh:ValidationReport;
+      sh:conforms true;
+      sh:result [ a sh:ValidationResult;
+          sh:focusNode ex:data;
+          sh:resultPath ex:property1;
+          sh:resultSeverity shn:Debug;
+          sh:sourceConstraintComponent sh:InConstraintComponent;
+          sh:sourceShape ex:PropertyShape;
+          sh:value 3E0
+        ], [ a sh:ValidationResult;
+          sh:focusNode ex:data;
+          sh:resultPath ex:property1;
+          sh:resultSeverity shn:Trace;
+          sh:sourceConstraintComponent shn:TraversalConstraintComponent;
+          sh:sourceShape ex:PropertyShape;
+          sh:value 3E0
+        ]
+    ].
+
+_:b1
+  sh:path [
+      shn:iri "http://example.org/property2"
+    ].

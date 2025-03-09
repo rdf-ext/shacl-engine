@@ -8,6 +8,11 @@ A fast [SHACL](https://www.w3.org/TR/shacl/) engine for data provided as [RDF/JS
 The package can be tested on the [SHACL Playground](https://playground.rdf-ext.org/shacl/), which runs client-side in the browser.
 Additionally, with [rdf-ext-cli](https://github.com/rdf-ext/rdf-ext-cli), there is a command-line tool for validating RDF data from files, URLs, or even SPARQL endpoints.
 
+**️🔥️🔥 Experimental Branch 🔥️️🔥**
+
+This is a branch for experimental features.
+See the features sections for more details.
+
 ## Features
 
 SHACL consists of multiple modules.
@@ -23,6 +28,31 @@ Additional features include:
 
 - Debug output in the validation report, showing passed validations and traversing steps.
 - Coverage support, providing a subgraph of all triples covered by the shape.
+
+### Experimental
+
+This branch contains experimental features related to the upcoming [SHACL 1.2 specifications](https://github.com/w3c/data-shapes), as well as features that are currently under discussion.
+These features are in the early stages of development and may not be fully stable or complete.
+As such, they should be used with caution and are not yet part of the official release.
+
+- [X] Node Expressions
+  - [ ] support for Node Expressions in `sh:deactivated`
+  - [X] support for Node Expressions in `sh:path`
+  - [ ] support for Node Expressions in `sh:targetNode` 
+  - [X] support for `sh:values`
+  - [X] support for Node Expressions for the following Core Constraint Components:
+    - [ ] Cardinality
+    - [ ] Logical
+    - [X] Other: `sh:in`
+    - [ ] Property Pair
+    - [ ] Shape-based
+    - [ ] String-based
+    - [X] Value Range: `sh:maxExclusive`, `sh:maxInclusive`, `sh:minExclusive`, `sh:minInclusive`
+    - [ ] Value Type:
+  - [ ] support for SPARQL-based Node Expressions
+
+See the `test/assets/custom12` folder for examples on how to use the new features.
+A list of supported Node Expression Functions can be found in the `lib/functions.js` JavaScript file.
 
 ### Performance
 
