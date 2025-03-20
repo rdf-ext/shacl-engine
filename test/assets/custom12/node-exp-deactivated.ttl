@@ -1,0 +1,58 @@
+@prefix ex: <http://example.org/>.
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix shn: <https://schemas.link/shacl-next#>.
+@prefix sht: <http://www.w3.org/ns/shacl-test#>.
+
+<> a mf:Manifest;
+  mf:entries (<node-exp-deactivated>).
+
+ex:data
+  ex:property "a".
+
+ex:PropertyShape1 a sh:PropertyShape;
+  sh:deactivated [
+      shn:eq (0 1)
+    ];
+  sh:in ("a");
+  sh:path ex:property.
+
+ex:PropertyShape2 a sh:PropertyShape;
+  sh:deactivated [
+      shn:eq (0 0)
+    ];
+  sh:in ("b");
+  sh:path ex:property.
+
+ex:RootShape a sh:NodeShape;
+  sh:property
+    ex:PropertyShape1,
+    ex:PropertyShape2;
+  sh:targetNode ex:data.
+
+<node-exp-deactivated> a sht:Validate;
+  rdfs:label "Test of sh:deactivated node expression";
+  mf:action [
+      sht:dataGraph <>;
+      sht:shapesGraph <>
+    ];
+  mf:result [ a sh:ValidationReport;
+      sh:conforms true;
+      sh:result [ a sh:ValidationResult;
+          sh:focusNode ex:data;
+          sh:resultPath ex:property;
+          sh:resultSeverity shn:Debug;
+          sh:sourceConstraintComponent sh:InConstraintComponent;
+          sh:sourceShape ex:PropertyShape1;
+          sh:value "a"
+        ], [ a sh:ValidationResult;
+          sh:focusNode ex:data;
+          sh:resultPath ex:property;
+          sh:resultSeverity shn:Trace;
+          sh:sourceConstraintComponent shn:TraversalConstraintComponent;
+          sh:sourceShape ex:PropertyShape1;
+          sh:value "a"
+        ]
+    ].

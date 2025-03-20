@@ -38,7 +38,7 @@ describe('Factory', () => {
       const dataset = await loadDataset(new URL('assets/details/and-details.ttl', import.meta.url))
 
       const validator = env.shacl.validator(dataset)
-      validator.validate({ dataset })
+      await validator.validate({ dataset })
 
       strictEqual(touched, true)
     })

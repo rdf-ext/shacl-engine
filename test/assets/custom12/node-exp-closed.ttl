@@ -1,0 +1,61 @@
+@prefix ex: <http://example.org/>.
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix shn: <https://schemas.link/shacl-next#>.
+@prefix sht: <http://www.w3.org/ns/shacl-test#>.
+
+<> a mf:Manifest;
+  mf:entries (<node-exp-closed>).
+
+ex:data
+  ex:property2 "b";
+  ex:property3 "c".
+
+ex:PropertyShape1 a sh:PropertyShape;
+  sh:deactivated [
+      shn:eq (0 0)
+    ];
+  sh:path ex:property1.
+
+ex:PropertyShape2 a sh:PropertyShape;
+  sh:deactivated [
+      shn:eq (0 1)
+    ];
+  sh:path ex:property2.
+
+ex:RootShape a sh:NodeShape;
+  sh:closed [
+      shn:eq (0 0)
+    ];
+  sh:ignoredProperties [
+      shn:iri "http://example.org/property3"
+    ];
+  sh:property
+    ex:PropertyShape1,
+    ex:PropertyShape2;
+  sh:targetNode ex:data.
+
+<node-exp-closed> a sht:Validate;
+  rdfs:label "Test of sh:closed node expression";
+  mf:action [
+      sht:dataGraph <>;
+      sht:shapesGraph <>
+    ];
+  mf:result [ a sh:ValidationReport;
+      sh:conforms true;
+      sh:result [ a sh:ValidationResult;
+          sh:focusNode ex:data;
+          sh:resultPath ex:property2;
+          sh:resultSeverity shn:Trace;
+          sh:sourceConstraintComponent shn:TraversalConstraintComponent;
+          sh:sourceShape ex:PropertyShape2;
+          sh:value "b"
+        ], [ a sh:ValidationResult;
+          sh:focusNode ex:data;
+          sh:resultSeverity shn:Debug;
+          sh:sourceConstraintComponent sh:ClosedConstraintComponent;
+          sh:sourceShape ex:RootShape
+        ]
+    ].

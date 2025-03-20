@@ -4,6 +4,8 @@
 <> a mf:Manifest;
   rdfs:label "Custom tests for 1.2 features";
   mf:include
+    <node-exp-closed.ttl>,
+    <node-exp-deactivated.ttl>,
     <node-exp-in-complex-path.ttl>,
     <node-exp-in-computed-path.ttl>,
     <node-exp-in-computed-values.ttl>,
