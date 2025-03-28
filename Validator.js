@@ -13,7 +13,7 @@ class Validator {
     this.factory = factory
     this.options = options
 
-    this.functionRegistry = new FunctionRegistry(functions)
+    this.functionRegistry = new FunctionRegistry({ factory: this.factory, functions })
     this.registry = new Registry(validations)
     this.shapesPtr = new PathList({ dataset, factory })
     this.shapes = new TermMap()
