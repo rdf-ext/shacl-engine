@@ -36,9 +36,9 @@ These features are in the early stages of development and may not be fully stabl
 As such, they should be used with caution and are not yet part of the official release.
 
 - [X] Node Expressions
-  - [ ] support for Node Expressions in `sh:deactivated`
+  - [X] support for Node Expressions in `sh:deactivated`
   - [X] support for Node Expressions in `sh:path`
-  - [ ] support for Node Expressions in `sh:targetNode` 
+  - [X] support for Node Expressions in `sh:targetNode` 
   - [X] support for `sh:values`
   - [X] support for Node Expressions for the following Core Constraint Components:
     - [ ] Cardinality
@@ -49,7 +49,7 @@ As such, they should be used with caution and are not yet part of the official r
     - [ ] String-based
     - [X] Value Range: `sh:maxExclusive`, `sh:maxInclusive`, `sh:minExclusive`, `sh:minInclusive`
     - [ ] Value Type:
-  - [ ] support for SPARQL-based Node Expressions
+  - [X] support for SPARQL-based Node Expressions
 
 See the `test/assets/custom12` folder for examples on how to use the new features.
 A list of supported Node Expression Functions can be found in the `lib/functions.js` JavaScript file.
@@ -141,15 +141,16 @@ See the `examples` folders for more examples.
 ### SPARQL Support
 
 The `Validator` comes with the core SHACL validations out-of-the-box.
-Additional validations must be added for SPARQL support.
+Additional functions and validations must be added for SPARQL support.
 The validations can be imported from `shacl-engine/sparql.js` as shown below:
 
 ```javascript
 import rdfDataModel from '@rdfjs/data-model'
-import { validations as sparqlValidations } from 'shacl-engine/sparql.js'
+import { functions as sparqlFunctions, validations as sparqlValidations } from 'shacl-engine/sparql.js'
 
 const validator = new Validator(dataset, {
   factory: rdfDataModel,
+  functions: sparqlFunctions,
   validations: sparqlValidations
 })
 ```

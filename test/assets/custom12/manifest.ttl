@@ -17,4 +17,6 @@
     <node-exp-max-exclusive.ttl>,
     <node-exp-max-inclusive.ttl>,
     <node-exp-min-exclusive.ttl>,
-    <node-exp-min-inclusive.ttl>.
+    <node-exp-min-inclusive.ttl>,
+    <node-exp-target-node.ttl>,
+    <node-exp-target-node-sparql.ttl>.
