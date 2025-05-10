@@ -1,5 +1,5 @@
 import { describe, run } from 'mocha'
-import { validations as sparqlValidations } from '../sparql.js'
+import { functions as sparqlFunctions, validations as sparqlValidations } from '../sparql.js'
 import { loadTests, runTests } from './support/utils.js'
 
 (async () => {
@@ -16,6 +16,10 @@ import { loadTests, runTests } from './support/utils.js'
       sparql: 'assets/sparql/manifest.ttl'
     }
 
+    const functions = {
+      custom12: sparqlFunctions
+    }
+
     const validations = {
       'data-shapes test suite': sparqlValidations,
       sparql: sparqlValidations
@@ -29,7 +33,10 @@ import { loadTests, runTests } from './support/utils.js'
 
     for (const [name, bundle] of Object.entries(tests)) {
       describe(name, () => {
-        runTests(bundle, { validations: validations[name] })
+        runTests(bundle, {
+          functions: functions[name],
+          validations: validations[name]
+        })
       })
     }
   } catch (err) {

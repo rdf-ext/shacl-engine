@@ -24,6 +24,12 @@ class Validator {
       this.options.trace = true
     }
 
+    if (this.options.functions) {
+      for (const [key, value] of this.options.functions) {
+        this.functionRegistry.functions.set(key, value)
+      }
+    }
+
     if (this.options.validations) {
       for (const [key, value] of this.options.validations) {
         this.registry.validations.set(key, value)
@@ -79,7 +85,7 @@ class Validator {
       if (!focusNode.isAny()) {
         targets = focusNode
       } else {
-        targets = shape.resolveTargets(shapeContext)
+        targets = await shape.resolveTargets(shapeContext)
       }
 
       for (const focusNode of targets) {
