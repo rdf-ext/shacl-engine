@@ -6,17 +6,19 @@
   mf:include
     <node-exp-closed.ttl>,
     <node-exp-deactivated.ttl>,
+    <node-exp-in-and.ttl>,
     <node-exp-in-complex-path.ttl>,
     <node-exp-in-computed-path.ttl>,
     <node-exp-in-computed-values.ttl>,
     <node-exp-in-exists.ttl>,
     <node-exp-in-nested-list.ttl>,
     <node-exp-in-not.ttl>,
+    <node-exp-in-or.ttl>,
     <node-exp-in-path.ttl>,
     <node-exp-in-values.ttl>,
     <node-exp-max-exclusive.ttl>,
     <node-exp-max-inclusive.ttl>,
     <node-exp-min-exclusive.ttl>,
     <node-exp-min-inclusive.ttl>,
-    <node-exp-target-node.ttl>,
-    <node-exp-target-node-sparql.ttl>.
+    <node-exp-target-node-sparql.ttl>,
+    <node-exp-target-node.ttl>.

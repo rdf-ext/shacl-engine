@@ -1,0 +1,93 @@
+@prefix ex: <http://example.org/>.
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix shn: <https://schemas.link/shacl-next#>.
+@prefix sht: <http://www.w3.org/ns/shacl-test#>.
+
+<> a mf:Manifest;
+  mf:entries (<node-exp-in-and>).
+
+ex:data
+  ex:propertyEmpty true;
+  ex:propertyFalse false;
+  ex:propertyTrue true.
+
+ex:PropertyEmptyShape a sh:PropertyShape;
+  sh:in [
+      sh:and rdf:nil
+    ];
+  sh:path ex:propertyEmpty.
+
+ex:PropertyFalseShape a sh:PropertyShape;
+  sh:in [
+      sh:and (true false true)
+    ];
+  sh:path ex:propertyFalse.
+
+ex:PropertyTrueShape a sh:PropertyShape;
+  sh:in [
+      sh:and (true true)
+    ];
+  sh:path ex:propertyTrue.
+
+ex:RootShape a sh:NodeShape;
+  sh:property
+    ex:PropertyEmptyShape,
+    ex:PropertyFalseShape,
+    ex:PropertyTrueShape;
+  sh:targetNode ex:data.
+
+<node-exp-in-and> a sht:Validate;
+  rdfs:label "Test of sh:in node expression with sh:and";
+  mf:action [
+      sht:dataGraph <>;
+      sht:shapesGraph <>
+    ];
+  mf:result [ a sh:ValidationReport;
+      sh:conforms true;
+      sh:result [ a sh:ValidationResult;
+          sh:focusNode ex:data;
+          sh:resultPath ex:propertyEmpty;
+          sh:resultSeverity shn:Debug;
+          sh:sourceConstraintComponent sh:InConstraintComponent;
+          sh:sourceShape ex:PropertyEmptyShape;
+          sh:value true
+        ], [ a sh:ValidationResult;
+          sh:focusNode ex:data;
+          sh:resultPath ex:propertyEmpty;
+          sh:resultSeverity shn:Trace;
+          sh:sourceConstraintComponent shn:TraversalConstraintComponent;
+          sh:sourceShape ex:PropertyEmptyShape;
+          sh:value true
+        ], [ a sh:ValidationResult;
+          sh:focusNode ex:data;
+          sh:resultPath ex:propertyFalse;
+          sh:resultSeverity shn:Debug;
+          sh:sourceConstraintComponent sh:InConstraintComponent;
+          sh:sourceShape ex:PropertyFalseShape;
+          sh:value false
+        ], [ a sh:ValidationResult;
+          sh:focusNode ex:data;
+          sh:resultPath ex:propertyFalse;
+          sh:resultSeverity shn:Trace;
+          sh:sourceConstraintComponent shn:TraversalConstraintComponent;
+          sh:sourceShape ex:PropertyFalseShape;
+          sh:value false
+        ], [ a sh:ValidationResult;
+          sh:focusNode ex:data;
+          sh:resultPath ex:propertyTrue;
+          sh:resultSeverity shn:Debug;
+          sh:sourceConstraintComponent sh:InConstraintComponent;
+          sh:sourceShape ex:PropertyTrueShape;
+          sh:value true
+        ], [ a sh:ValidationResult;
+          sh:focusNode ex:data;
+          sh:resultPath ex:propertyTrue;
+          sh:resultSeverity shn:Trace;
+          sh:sourceConstraintComponent shn:TraversalConstraintComponent;
+          sh:sourceShape ex:PropertyTrueShape;
+          sh:value true
+        ]
+    ].
