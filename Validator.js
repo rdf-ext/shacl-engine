@@ -31,6 +31,7 @@ class Validator {
       ...this.shapesPtr.hasOut([ns.sh.targetNode]),
       ...this.shapesPtr.hasOut([ns.sh.targetObjectsOf]),
       ...this.shapesPtr.hasOut([ns.sh.targetSubjectsOf]),
+      ...this.shapesPtr.hasOut([ns.sh.target]), // Add SPARQL targets
       ...this.shapesPtr.hasOut([ns.rdf.type], [ns.sh.NodeShape]),
       ...this.shapesPtr.hasOut([ns.rdf.type], [ns.sh.PropertyShape])
     ]
@@ -75,7 +76,7 @@ class Validator {
       if (!focusNode.isAny()) {
         targets = focusNode
       } else {
-        targets = shape.resolveTargets(shapeContext)
+        targets = await shape.resolveTargets(shapeContext)
       }
 
       for (const focusNode of targets) {
