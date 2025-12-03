@@ -155,7 +155,7 @@ const reportSubgraph = () => {
   })
 }
 
-function runTest (test, { validations } = {}) {
+function runTest (test, { validations, targetResolvers } = {}) {
   const label = test.entry.out(ns.rdfs.label)
 
   it(label.value, async () => {
@@ -163,20 +163,20 @@ function runTest (test, { validations } = {}) {
       const coverage = test.result.node(null).out(ns.sh.resultSeverity, ns.shn.Trace).terms.length > 0
       const debug = test.result.out(ns.sh.result).out(ns.sh.resultSeverity, ns.shn.Debug).terms.length > 0
       const details = test.result.out(ns.sh.result).out(ns.sh.detail).terms.length > 0
-      const validator = new Validator(test.shapes, { coverage, debug, details, factory: rdf, validations })
+      const validator = new Validator(test.shapes, { coverage, debug, details, factory: rdf, validations, targetResolvers })
       const report = await validator.validate({ dataset: test.data })
       const expected = normalizeReport(report, test.result)
 
       datasetEqual(report.dataset, expected)
     } else if (ns.sht.Coverage.equals(test.resultType)) {
-      const validator = new Validator(test.shapes, { coverage: true, factory: rdf, validations })
+      const validator = new Validator(test.shapes, { coverage: true, factory: rdf, validations, targetResolvers })
       const report = await validator.validate({ dataset: test.data })
       const coverage = rdf.dataset(report.coverage())
       const expected = await parseString('text/turtle', test.result.out(ns.sht.coverage).value)
 
       datasetEqual(coverage, expected)
     } else if (ns.sht.Failure.equals(test.result.term)) {
-      const validator = new Validator(test.shapes, { factory: rdf, validations })
+      const validator = new Validator(test.shapes, { factory: rdf, validations, targetResolvers })
       const report = await validator.validate({ dataset: test.data })
 
       strictEqual(report.conforms, false)
@@ -186,9 +186,9 @@ function runTest (test, { validations } = {}) {
   })
 }
 
-function runTests (tests, { validations } = {}) {
+function runTests (tests, { validations, targetResolvers } = {}) {
   for (const test of tests) {
-    runTest(test, { validations })
+    runTest(test, { validations, targetResolvers })
   }
 }
 

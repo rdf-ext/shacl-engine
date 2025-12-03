@@ -4,6 +4,7 @@ import Context from './lib/Context.js'
 import * as ns from './lib/namespaces.js'
 import Registry from './lib/Registry.js'
 import Shape from './lib/Shape.js'
+import TargetResolverRegistry from './lib/TargetResolverRegistry.js'
 import validations from './lib/validations.js'
 
 class Validator {
@@ -11,6 +12,7 @@ class Validator {
     this.factory = factory
     this.options = options
     this.registry = new Registry(validations)
+    this.targetResolverRegistry = new TargetResolverRegistry(this.options.targetResolvers || [])
     this.shapesPtr = new PathList({ dataset, factory })
     this.shapes = new TermMap()
 
@@ -31,7 +33,7 @@ class Validator {
       ...this.shapesPtr.hasOut([ns.sh.targetNode]),
       ...this.shapesPtr.hasOut([ns.sh.targetObjectsOf]),
       ...this.shapesPtr.hasOut([ns.sh.targetSubjectsOf]),
-      ...this.shapesPtr.hasOut([ns.sh.target]), // Add SPARQL targets
+      ...this.shapesPtr.hasOut([ns.sh.target]),
       ...this.shapesPtr.hasOut([ns.rdf.type], [ns.sh.NodeShape]),
       ...this.shapesPtr.hasOut([ns.rdf.type], [ns.sh.PropertyShape])
     ]

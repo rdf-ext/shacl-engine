@@ -16,6 +16,7 @@ Here is an overview of SHACL features this library implements and planned featur
 - [X] [SHACL Validation](https://www.w3.org/TR/shacl/#validation)
   - [X] [SHACL Core Constraint Components](https://www.w3.org/TR/shacl/#core-components)
   - [X] [SHACL SPARQL-based Constraints](https://www.w3.org/TR/shacl/#sparql-constraints)
+  - [X] [SHACL SPARQL-based Targets](https://www.w3.org/TR/shacl/#sparql-based-targets)
 - [ ] [SHACL JavaScript Extensions](https://www.w3.org/TR/shacl-js/)
 - [ ] [SHACL Advanced Features](https://w3c.github.io/shacl/shacl-af/)
 
@@ -111,15 +112,33 @@ See the `examples` folders for more examples.
 ### SPARQL Support
 
 The `Validator` comes with the core SHACL validations out-of-the-box.
-Additional validations must be added for SPARQL support.
-The validations can be imported from `shacl-engine/sparql.js` as shown below:
+Additional validations and target resolvers must be added for full SPARQL support.
+These can be imported from `shacl-engine/sparql.js` as shown below:
 
 ```javascript
 import rdfDataModel from '@rdfjs/data-model'
-import { validations as sparqlValidations } from 'shacl-engine/sparql.js'
+import { targetResolvers, validations } from 'shacl-engine/sparql.js'
 
 const validator = new Validator(dataset, {
   factory: rdfDataModel,
-  validations: sparqlValidations
+  targetResolvers,
+  validations
+})
+```
+
+The SPARQL plugin provides:
+
+- `validations`: Support for [SPARQL-based Constraints](https://www.w3.org/TR/shacl/#sparql-constraints) (`sh:sparql`)
+- `targetResolvers`: Support for [SPARQL-based Targets](https://www.w3.org/TR/shacl/#sparql-based-targets) (`sh:target` with `sh:select`)
+
+Both are optional and can be used independently.
+For example, to use only SPARQL-based targets without SPARQL constraints:
+
+```javascript
+import { targetResolvers } from 'shacl-engine/sparql.js'
+
+const validator = new Validator(dataset, {
+  factory: rdfDataModel,
+  targetResolvers
 })
 ```
