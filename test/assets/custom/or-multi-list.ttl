@@ -19,20 +19,25 @@ ex:RectangleWithArea a rdfs:Class, sh:NodeShape;
   rdfs:subClassOf rdfs:Resource;
   sh:or(ex:RectangleWithAreaHeightWidth),(ex:RectangleWithAreaArea).
 
+ex:RectangleWithAreaArea-area
+  sh:minCount 1;
+  sh:path ex:area.
+
 ex:RectangleWithAreaArea
-  sh:property [
-      sh:minCount 1;
-      sh:path ex:area
-    ].
+  sh:property ex:RectangleWithAreaArea-area.
+
+ex:RectangleWithAreaHeightWidth-height
+  sh:minCount 1;
+  sh:path ex:height.
+
+ex:RectangleWithAreaHeightWidth-width
+  sh:minCount 1;
+  sh:path ex:width.
 
 ex:RectangleWithAreaHeightWidth
-  sh:property [
-      sh:minCount 1;
-      sh:path ex:height
-    ], [
-      sh:minCount 1;
-      sh:path ex:width
-    ].
+  sh:property
+    ex:RectangleWithAreaHeightWidth-height,
+    ex:RectangleWithAreaHeightWidth-width.
 
 ex:ValidRectangle1 a ex:RectangleWithArea;
   ex:height 3;
@@ -56,185 +61,40 @@ ex:ValidRectangle3 a ex:RectangleWithArea;
   mf:result [ a sh:ValidationReport;
       sh:conforms false;
       sh:result [ a sh:ValidationResult;
-          sh:detail [ a sh:ValidationResult;
-              sh:focusNode ex:InvalidRectangle1;
-              sh:resultPath ex:width;
-              sh:resultSeverity sh:Violation;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b1
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:InvalidRectangle1;
-              sh:resultPath ex:area;
-              sh:resultSeverity sh:Violation;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b2
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:InvalidRectangle1;
-              sh:resultPath ex:height;
-              sh:resultSeverity shn:Trace;
-              sh:sourceConstraintComponent shn:TraversalConstraintComponent;
-              sh:sourceShape _:b3;
-              sh:value 3
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:InvalidRectangle1;
-              sh:resultPath ex:height;
-              sh:resultSeverity shn:Debug;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b3
-            ];
+          sh:focusNode ex:ValidRectangle3;
+          sh:resultSeverity sh:Violation;
+          sh:sourceConstraintComponent sh:OrConstraintComponent;
+          sh:sourceShape ex:RectangleWithArea;
+          sh:value ex:ValidRectangle3
+        ], [ a sh:ValidationResult;
+          sh:focusNode ex:ValidRectangle1;
+          sh:resultSeverity sh:Violation;
+          sh:sourceConstraintComponent sh:OrConstraintComponent;
+          sh:sourceShape ex:RectangleWithArea;
+          sh:value ex:ValidRectangle1
+        ], [ a sh:ValidationResult;
           sh:focusNode ex:InvalidRectangle1;
           sh:resultSeverity sh:Violation;
           sh:sourceConstraintComponent sh:OrConstraintComponent;
           sh:sourceShape ex:RectangleWithArea;
           sh:value ex:InvalidRectangle1
         ], [ a sh:ValidationResult;
-          sh:detail [ a sh:ValidationResult;
-              sh:focusNode ex:ValidRectangle1;
-              sh:resultPath ex:height;
-              sh:resultSeverity shn:Debug;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b3
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:ValidRectangle1;
-              sh:resultPath ex:width;
-              sh:resultSeverity shn:Debug;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b1
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:ValidRectangle1;
-              sh:resultPath ex:width;
-              sh:resultSeverity shn:Trace;
-              sh:sourceConstraintComponent shn:TraversalConstraintComponent;
-              sh:sourceShape _:b1;
-              sh:value 2
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:ValidRectangle1;
-              sh:resultPath ex:area;
-              sh:resultSeverity sh:Violation;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b2
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:ValidRectangle1;
-              sh:resultPath ex:height;
-              sh:resultSeverity shn:Trace;
-              sh:sourceConstraintComponent shn:TraversalConstraintComponent;
-              sh:sourceShape _:b3;
-              sh:value 3
-            ];
-          sh:focusNode ex:ValidRectangle1;
-          sh:resultSeverity shn:Debug;
+          sh:focusNode ex:InvalidRectangle1;
+          sh:resultSeverity sh:Violation;
           sh:sourceConstraintComponent sh:OrConstraintComponent;
           sh:sourceShape ex:RectangleWithArea;
-          sh:value ex:ValidRectangle1
+          sh:value ex:InvalidRectangle1
         ], [ a sh:ValidationResult;
-          sh:detail [ a sh:ValidationResult;
-              sh:focusNode ex:InvalidRectangle2;
-              sh:resultPath ex:area;
-              sh:resultSeverity sh:Violation;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b2
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:InvalidRectangle2;
-              sh:resultPath ex:height;
-              sh:resultSeverity sh:Violation;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b3
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:InvalidRectangle2;
-              sh:resultPath ex:width;
-              sh:resultSeverity sh:Violation;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b1
-            ];
           sh:focusNode ex:InvalidRectangle2;
           sh:resultSeverity sh:Violation;
           sh:sourceConstraintComponent sh:OrConstraintComponent;
           sh:sourceShape ex:RectangleWithArea;
           sh:value ex:InvalidRectangle2
         ], [ a sh:ValidationResult;
-          sh:detail [ a sh:ValidationResult;
-              sh:focusNode ex:ValidRectangle2;
-              sh:resultPath ex:area;
-              sh:resultSeverity shn:Trace;
-              sh:sourceConstraintComponent shn:TraversalConstraintComponent;
-              sh:sourceShape _:b2;
-              sh:value 6
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:ValidRectangle2;
-              sh:resultPath ex:height;
-              sh:resultSeverity shn:Trace;
-              sh:sourceConstraintComponent shn:TraversalConstraintComponent;
-              sh:sourceShape _:b3;
-              sh:value 3
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:ValidRectangle2;
-              sh:resultPath ex:width;
-              sh:resultSeverity shn:Trace;
-              sh:sourceConstraintComponent shn:TraversalConstraintComponent;
-              sh:sourceShape _:b1;
-              sh:value 2
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:ValidRectangle2;
-              sh:resultPath ex:width;
-              sh:resultSeverity shn:Debug;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b1
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:ValidRectangle2;
-              sh:resultPath ex:area;
-              sh:resultSeverity shn:Debug;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b2
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:ValidRectangle2;
-              sh:resultPath ex:height;
-              sh:resultSeverity shn:Debug;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b3
-            ];
-          sh:focusNode ex:ValidRectangle2;
-          sh:resultSeverity shn:Debug;
+          sh:focusNode ex:InvalidRectangle2;
+          sh:resultSeverity sh:Violation;
           sh:sourceConstraintComponent sh:OrConstraintComponent;
           sh:sourceShape ex:RectangleWithArea;
-          sh:value ex:ValidRectangle2
-        ], [ a sh:ValidationResult;
-          sh:detail [ a sh:ValidationResult;
-              sh:focusNode ex:ValidRectangle3;
-              sh:resultPath ex:height;
-              sh:resultSeverity shn:Debug;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b3
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:ValidRectangle3;
-              sh:resultPath ex:area;
-              sh:resultSeverity shn:Trace;
-              sh:sourceConstraintComponent shn:TraversalConstraintComponent;
-              sh:sourceShape _:b2;
-              sh:value 6
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:ValidRectangle3;
-              sh:resultPath ex:width;
-              sh:resultSeverity sh:Violation;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b1
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:ValidRectangle3;
-              sh:resultPath ex:height;
-              sh:resultSeverity shn:Trace;
-              sh:sourceConstraintComponent shn:TraversalConstraintComponent;
-              sh:sourceShape _:b3;
-              sh:value 3
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:ValidRectangle3;
-              sh:resultPath ex:area;
-              sh:resultSeverity shn:Debug;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b2
-            ];
-          sh:focusNode ex:ValidRectangle3;
-          sh:resultSeverity shn:Debug;
-          sh:sourceConstraintComponent sh:OrConstraintComponent;
-          sh:sourceShape ex:RectangleWithArea;
-          sh:value ex:ValidRectangle3
+          sh:value ex:InvalidRectangle2
         ]
     ].

@@ -1,10 +1,10 @@
-import Validator from './Validator.js'
+import Engine from './Engine.js'
 
 class Factory {
   init () {
     this.shacl = {}
-    this.shacl.validator = (dataset, options) => {
-      return new Validator(dataset, { ...options, factory: this })
+    this.shacl.engine = (dataset, options) => {
+      return new Engine(dataset, { ...options, factory: this })
     }
   }
 }

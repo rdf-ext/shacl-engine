@@ -7,6 +7,7 @@
     <and-multi-list.ttl>,
     <circular.ttl>,
     <deactivated-closed.ttl>,
+    <not-multi.ttl>,
     <or-multi-list.ttl>,
     <qualifiedValueShape.ttl>,
     <xone-multi-list.ttl>.

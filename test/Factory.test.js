@@ -16,11 +16,11 @@ describe('Factory', () => {
     strictEqual(typeof env.shacl, 'object')
   })
 
-  describe('.validator', () => {
+  describe('.engine', () => {
     it('should be a function', () => {
       const env = new Environment([Factory])
 
-      strictEqual(typeof env.shacl.validator, 'function')
+      strictEqual(typeof env.shacl.engine, 'function')
     })
 
     it('should use the environment as data factory', async () => {
@@ -37,8 +37,8 @@ describe('Factory', () => {
       const env = new Environment([CustomDataFactory, Factory])
       const dataset = await loadDataset(new URL('assets/details/and-details.ttl', import.meta.url))
 
-      const validator = env.shacl.validator(dataset)
-      await validator.validate({ dataset })
+      const engine = env.shacl.engine(dataset)
+      await engine.validate({ dataset })
 
       strictEqual(touched, true)
     })

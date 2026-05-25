@@ -1,13 +1,10 @@
-import { strictEqual } from 'node:assert'
 import ParserN3 from '@rdfjs/parser-n3'
 import TermSet from '@rdfjs/term-set'
 import grapoi from 'grapoi'
-import { it } from 'mocha'
-import { datasetEqual } from 'rdf-test/assert.js'
+import Grapoi from 'grapoi/Grapoi.js'
 import fromFile from 'rdf-utils-fs/fromFile.js'
 import { Readable } from 'readable-stream'
 import chunks from 'stream-chunks/chunks.js'
-import Validator from '../../Validator.js'
 import rdf from './factory.js'
 import * as ns from './namespaces.js'
 
@@ -25,29 +22,8 @@ const keepReportProperties = new TermSet([
   ns.sh.detail
 ])
 
-async function findTests (manifest) {
-  const tests = []
-
-  for (const entryList of manifest.out(ns.mf.entries)) {
-    for (const entry of entryList.list()) {
-      const action = entry.out(ns.mf.action)
-      const shapes = await loadDataset(action.out(ns.sht.shapesGraph))
-      const data = await loadDataset(action.out(ns.sht.dataGraph))
-      const result = entry.out(ns.mf.result)
-      const resultType = result.out(ns.rdf.type).term
-
-      tests.push({
-        action,
-        data,
-        entry,
-        result,
-        resultType,
-        shapes
-      })
-    }
-  }
-
-  return tests
+function isGrapoi (obj) {
+  return obj instanceof Grapoi
 }
 
 async function loadDataset (url, options) {
@@ -87,13 +63,6 @@ async function loadManifest (url) {
   return grapoi({ dataset: rdf.dataset(all), factory: rdf })
 }
 
-async function loadTests (url) {
-  const manifest = await loadManifest(url)
-  const tests = findTests(manifest)
-
-  return tests
-}
-
 function normalizeReport (report, expected) {
   // delete messages if expected report doesn't have any
   const resultMessages = expected
@@ -109,9 +78,21 @@ function normalizeReport (report, expected) {
     grapoi(report.ptr).node().deleteOut(ns.sh.resultMessage)
   }
 
+  // remove implementation-specific message
   expected.node().deleteOut(ns.sh.resultMessage, rdf.literal('false', ns.xsd.boolean))
 
-  // reduce report graph to a defined subset of properties
+  // remove named node lists
+  for (const ptr of expected.node().in(ns.rdf.first)) {
+    if (ptr.term.termType === 'NamedNode') {
+      ptr.deleteOut([ns.rdf.first, ns.rdf.rest])
+    }
+  }
+
+  for (const ptr of expected.node().out(ns.sh.value)) {
+    ptr.deleteOut([ns.rdf.first, ns.rdf.rest])
+  }
+
+  // reduce the report graph to a defined subset of properties
   return reportSubgraph().match({ dataset: expected.dataset, term: expected.term })
 }
 
@@ -155,45 +136,10 @@ const reportSubgraph = () => {
   })
 }
 
-function runTest (test, { functions, validations } = {}) {
-  const label = test.entry.out(ns.rdfs.label)
-
-  it(label.value, async () => {
-    if (ns.sh.ValidationReport.equals(test.resultType)) {
-      const coverage = test.result.node(null).out(ns.sh.resultSeverity, ns.shn.Trace).terms.length > 0
-      const debug = test.result.out(ns.sh.result).out(ns.sh.resultSeverity, ns.shn.Debug).terms.length > 0
-      const details = test.result.out(ns.sh.result).out(ns.sh.detail).terms.length > 0
-      const validator = new Validator(test.shapes, { coverage, debug, details, factory: rdf, functions, validations })
-      const report = await validator.validate({ dataset: test.data })
-      const expected = normalizeReport(report, test.result)
-
-      datasetEqual(report.dataset, expected)
-    } else if (ns.sht.Coverage.equals(test.resultType)) {
-      const validator = new Validator(test.shapes, { coverage: true, factory: rdf, functions, validations })
-      const report = await validator.validate({ dataset: test.data })
-      const coverage = rdf.dataset(report.coverage())
-      const expected = await parseString('text/turtle', test.result.out(ns.sht.coverage).value)
-
-      datasetEqual(coverage, expected)
-    } else if (ns.sht.Failure.equals(test.result.term)) {
-      const validator = new Validator(test.shapes, { factory: rdf, functions, validations })
-      const report = await validator.validate({ dataset: test.data })
-
-      strictEqual(report.conforms, false)
-    } else {
-      throw new Error(`unknown test type: ${test.resultType.value}`)
-    }
-  })
-}
-
-function runTests (tests, { functions, validations } = {}) {
-  for (const test of tests) {
-    runTest(test, { functions, validations })
-  }
-}
-
 export {
+  isGrapoi,
   loadDataset,
-  loadTests,
-  runTests
+  loadManifest,
+  normalizeReport,
+  parseString
 }

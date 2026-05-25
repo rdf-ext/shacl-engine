@@ -47,123 +47,18 @@ ex:XoneConstraintExampleShapeFullName
       sht:shapesGraph <>
     ];
   mf:result [ a sh:ValidationReport;
-      sh:conforms false;
-      sh:result [ a sh:ValidationResult;
-          sh:detail [ a sh:ValidationResult;
-              sh:focusNode ex:Dory;
-              sh:resultPath ex:fullName;
-              sh:resultSeverity shn:Trace;
-              sh:sourceConstraintComponent shn:TraversalConstraintComponent;
-              sh:sourceShape _:b1;
-              sh:value "Dory Dunce"
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:Dory;
-              sh:resultPath ex:fullName;
-              sh:resultSeverity shn:Debug;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b1
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:Dory;
-              sh:resultPath ex:firstName;
-              sh:resultSeverity shn:Trace;
-              sh:sourceConstraintComponent shn:TraversalConstraintComponent;
-              sh:sourceShape _:b2;
-              sh:value "Dory"
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:Dory;
-              sh:resultPath ex:firstName;
-              sh:resultSeverity shn:Debug;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b2
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:Dory;
-              sh:resultPath ex:lastName;
-              sh:resultSeverity shn:Debug;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b3
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:Dory;
-              sh:resultPath ex:lastName;
-              sh:resultSeverity shn:Trace;
-              sh:sourceConstraintComponent shn:TraversalConstraintComponent;
-              sh:sourceShape _:b3;
-              sh:value "Dunce"
-            ];
-          sh:focusNode ex:Dory;
-          sh:resultSeverity sh:Violation;
-          sh:sourceConstraintComponent sh:XoneConstraintComponent;
-          sh:sourceShape ex:XoneConstraintExampleShape;
-          sh:value ex:Dory
-        ], [ a sh:ValidationResult;
-          sh:detail [ a sh:ValidationResult;
-              sh:focusNode ex:Carla;
-              sh:resultPath ex:fullName;
-              sh:resultSeverity shn:Debug;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b1
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:Carla;
-              sh:resultPath ex:lastName;
-              sh:resultSeverity sh:Violation;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b3
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:Carla;
-              sh:resultPath ex:firstName;
-              sh:resultSeverity sh:Violation;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b2
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:Carla;
-              sh:resultPath ex:fullName;
-              sh:resultSeverity shn:Trace;
-              sh:sourceConstraintComponent shn:TraversalConstraintComponent;
-              sh:sourceShape _:b1;
-              sh:value "Carla Miller"
-            ];
-          sh:focusNode ex:Carla;
-          sh:resultSeverity shn:Debug;
-          sh:sourceConstraintComponent sh:XoneConstraintComponent;
-          sh:sourceShape ex:XoneConstraintExampleShape;
-          sh:value ex:Carla
-        ], [ a sh:ValidationResult;
-          sh:detail [ a sh:ValidationResult;
-              sh:focusNode ex:Bob;
-              sh:resultPath ex:fullName;
-              sh:resultSeverity sh:Violation;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b1
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:Bob;
-              sh:resultPath ex:lastName;
-              sh:resultSeverity shn:Debug;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b3
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:Bob;
-              sh:resultPath ex:firstName;
-              sh:resultSeverity shn:Trace;
-              sh:sourceConstraintComponent shn:TraversalConstraintComponent;
-              sh:sourceShape _:b2;
-              sh:value "Robert"
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:Bob;
-              sh:resultPath ex:firstName;
-              sh:resultSeverity shn:Debug;
-              sh:sourceConstraintComponent sh:MinCountConstraintComponent;
-              sh:sourceShape _:b2
-            ], [ a sh:ValidationResult;
-              sh:focusNode ex:Bob;
-              sh:resultPath ex:lastName;
-              sh:resultSeverity shn:Trace;
-              sh:sourceConstraintComponent shn:TraversalConstraintComponent;
-              sh:sourceShape _:b3;
-              sh:value "Coin"
-            ];
-          sh:focusNode ex:Bob;
-          sh:resultSeverity shn:Debug;
-          sh:sourceConstraintComponent sh:XoneConstraintComponent;
-          sh:sourceShape ex:XoneConstraintExampleShape;
-          sh:value ex:Bob
-        ]
-    ].
+            sh:conforms false;
+            sh:result [ a sh:ValidationResult;
+                    sh:focusNode ex:Carla;
+                    sh:resultSeverity sh:Violation;
+                    sh:sourceConstraintComponent sh:XoneConstraintComponent;
+                    sh:sourceShape ex:XoneConstraintExampleShape;
+                    sh:value ex:Carla
+                ], [ a sh:ValidationResult;
+                    sh:focusNode ex:Bob;
+                    sh:resultSeverity sh:Violation;
+                    sh:sourceConstraintComponent sh:XoneConstraintComponent;
+                    sh:sourceShape ex:XoneConstraintExampleShape;
+                    sh:value ex:Bob
+                ]
+        ].
