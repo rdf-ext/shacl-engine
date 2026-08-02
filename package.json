@@ -44,7 +44,7 @@
     "@rdfjs/normalize": "^2.0.4",
     "@rdfjs/parser-n3": "^2.2.0",
     "@rdfjs/traverser": "^0.1.4",
-    "c8": "^11.0.0",
+    "c8": "^12.0.0",
     "mocha": "^11.7.6",
     "rdf-test": "^0.1.1",
     "rdf-utils-fs": "^3.0.1",
