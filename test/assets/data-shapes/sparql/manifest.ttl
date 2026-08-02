@@ -4,9 +4,10 @@
 
 <>
 	a mf:Manifest ;
-	#TODO mf:include <component/manifest.ttl> ;
+	mf:include <component/manifest.ttl> ;
 	mf:include <node/manifest.ttl> ;
 	mf:include <property/manifest.ttl> ;
-	#TODO mf:include <pre-binding/manifest.ttl> ;
+	mf:include <pre-binding/manifest.ttl> ;
+	mf:include <rules/manifest.ttl> ;
 	mf:include <targets/manifest.ttl> ;
 	.

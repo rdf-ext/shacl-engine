@@ -33,6 +33,10 @@ class Test {
     if (ns.sht.EvalNodeExpr.equals(type)) {
       return NodeExpressionTest.load({ entry, entryList })
     }
+
+    console.log(`${entry.value}: test type ${type.value} unsupported`)
+
+    return null
   }
 
   static async loadTests (url) {
@@ -41,7 +45,11 @@ class Test {
 
     for (const entryList of manifest.out(ns.mf.entries)) {
       for (const entry of entryList.list()) {
-        tests.push(await Test.loadTest({ entry, entryList }))
+        const test = await Test.loadTest({ entry, entryList })
+
+        if (test) {
+          tests.push(test)
+        }
       }
     }
 
