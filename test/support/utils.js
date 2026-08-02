@@ -27,21 +27,25 @@ function isGrapoi (obj) {
 }
 
 async function loadDataset (url, options) {
-  if (typeof url.value === 'string') {
-    url = url.value
+  try {
+    if (typeof url.value === 'string') {
+      url = url.value
+    }
+
+    if (url.toString().startsWith('file:///')) {
+      url = new URL(url.toString()).pathname
+    }
+
+    const dataset = rdf.dataset()
+
+    for await (const quad of fromFile(url, options)) {
+      dataset.add(quad)
+    }
+
+    return dataset
+  } catch (cause) {
+    throw new Error(`could not load dataset ${url}`, { cause })
   }
-
-  if (url.toString().startsWith('file:///')) {
-    url = new URL(url.toString()).pathname
-  }
-
-  const dataset = rdf.dataset()
-
-  for await (const quad of fromFile(url, options)) {
-    dataset.add(quad)
-  }
-
-  return dataset
 }
 
 async function loadManifest (url) {
