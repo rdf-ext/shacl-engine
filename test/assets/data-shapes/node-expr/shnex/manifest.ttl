@@ -5,7 +5,7 @@
 <>
 	a mf:Manifest ;
 	mf:include <concat.ttl> ;
-	#TODO mf:include <conformsToShape.ttl> ;
+	mf:include <conformsToShape.ttl> ;
 	#TODO mf:include <constant.ttl> ;
 	mf:include <count.ttl> ;
 	mf:include <distinct.ttl> ;
