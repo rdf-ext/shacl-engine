@@ -10,5 +10,6 @@
     <inheritance-multi-level.ttl>,
     <inheritance-multi-level-implicit-target.ttl>,
     <not-multi.ttl>,
+    <qualifiedValueShape-node.ttl>,
     <targetNode-non-existing.ttl>,
     <uniqueLang-false.ttl>.

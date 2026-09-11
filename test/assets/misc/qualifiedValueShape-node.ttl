@@ -1,0 +1,61 @@
+@prefix ex: <http://example.org/>.
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix sht: <http://www.w3.org/ns/shacl-test#>.
+
+<> a mf:Manifest;
+  mf:entries (<qualifiedValueShape-node>).
+
+<qualifiedValueShape-node> a sht:Validate;
+  rdfs:label "Test of sh:qualifiedValueShape in a property shape reached via sh:node";
+  mf:action [
+      sht:dataGraph <>;
+      sht:shapesGraph <>
+    ];
+  mf:result [ a sh:ValidationReport;
+      sh:conforms false;
+      sh:result [ a sh:ValidationResult;
+          sh:focusNode ex:citizen-b;
+          sh:resultPath ex:owns;
+          sh:resultSeverity sh:Violation;
+          sh:sourceConstraintComponent sh:NodeConstraintComponent;
+          sh:sourceShape ex:citizenOwnsShape;
+          sh:value ex:HouseB
+        ]
+    ].
+
+ex:BedroomB a ex:Bedroom.
+
+ex:citizen-a a ex:Citizen;
+  ex:owns ex:HouseA.
+
+ex:citizen-b a ex:Citizen;
+  ex:owns ex:HouseB.
+
+ex:citizenOwnsShape
+  sh:node ex:houseShape;
+  sh:path ex:owns.
+
+ex:citizenShape a sh:NodeShape;
+  sh:property ex:citizenOwnsShape;
+  sh:targetClass ex:Citizen.
+
+ex:HouseA a ex:House;
+  ex:room ex:KitchenA.
+
+ex:HouseB a ex:House;
+  ex:room ex:BedroomB.
+
+ex:houseKitchenShape
+  sh:path ex:room;
+  sh:qualifiedMinCount 1;
+  sh:qualifiedValueShape [
+      sh:class ex:Kitchen
+    ].
+
+ex:houseShape a sh:NodeShape;
+  sh:property ex:houseKitchenShape.
+
+ex:KitchenA a ex:Kitchen.
