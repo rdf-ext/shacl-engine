@@ -9,5 +9,6 @@
     <lessThan-more-types.ttl>,
     <inheritance-multi-level.ttl>,
     <inheritance-multi-level-implicit-target.ttl>,
+    <not-multi.ttl>,
     <targetNode-non-existing.ttl>,
     <uniqueLang-false.ttl>.
