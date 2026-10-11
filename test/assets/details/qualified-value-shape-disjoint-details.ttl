@@ -1,0 +1,78 @@
+@prefix ex: <http://example.org/>.
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix sht: <http://www.w3.org/ns/shacl-test#>.
+
+ex:MyShape a sh:NodeShape;
+  sh:property ex:MyShape-wheel, ex:MyShape-spareWheel, ex:MyShape-engine;
+  sh:targetNode ex:InvalidInstance1.
+
+ex:MyShape-engine
+  sh:path ex:part;
+  sh:qualifiedValueShape ex:EngineShape.
+
+ex:MyShape-spareWheel
+  sh:path ex:part;
+  sh:qualifiedValueShape ex:SpareWheelShape.
+
+ex:MyShape-wheel
+  sh:path ex:part;
+  sh:qualifiedMinCount 2;
+  sh:qualifiedValueShape ex:WheelShape;
+  sh:qualifiedValueShapesDisjoint true.
+
+ex:EngineShape
+  sh:class ex:Engine.
+
+ex:SpareWheelShape
+  sh:class ex:SpareWheel.
+
+ex:WheelShape
+  sh:class ex:Wheel.
+
+ex:InvalidInstance1
+  ex:part ex:Wheel1, ex:Wheel2.
+
+ex:Wheel1 a ex:Wheel.
+
+ex:Wheel2 a ex:SpareWheel, ex:Wheel.
+
+<> a mf:Manifest;
+  mf:entries (<qualified-value-shape-disjoint-details>).
+
+<qualified-value-shape-disjoint-details> a sht:Validate;
+  rdfs:label "Test of sh:qualifiedValueShape with sh:qualifiedValueShapesDisjoint and details";
+  mf:action [
+    sht:dataGraph <>;
+    sht:shapesGraph <>
+  ];
+  mf:result [ a sh:ValidationReport;
+    sh:conforms false;
+    sh:result [ a sh:ValidationResult;
+      sh:detail [ a sh:ValidationResult;
+        sh:focusNode ex:Wheel1;
+        sh:resultSeverity sh:Violation;
+        sh:sourceConstraintComponent sh:ClassConstraintComponent;
+        sh:sourceShape ex:SpareWheelShape;
+        sh:value ex:Wheel1
+      ], [ a sh:ValidationResult;
+        sh:focusNode ex:Wheel1;
+        sh:resultSeverity sh:Violation;
+        sh:sourceConstraintComponent sh:ClassConstraintComponent;
+        sh:sourceShape ex:EngineShape;
+        sh:value ex:Wheel1
+      ], [ a sh:ValidationResult;
+        sh:focusNode ex:Wheel2;
+        sh:resultSeverity sh:Violation;
+        sh:sourceConstraintComponent sh:ClassConstraintComponent;
+        sh:sourceShape ex:EngineShape;
+        sh:value ex:Wheel2
+      ];
+      sh:focusNode ex:InvalidInstance1;
+      sh:resultPath ex:part;
+      sh:resultSeverity sh:Violation;
+      sh:sourceConstraintComponent sh:QualifiedMinCountConstraintComponent;
+      sh:sourceShape ex:MyShape-wheel
+    ]
+  ].

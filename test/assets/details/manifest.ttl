@@ -8,4 +8,5 @@
   mf:include <not-details.ttl>;
   mf:include <or-details.ttl>;
   mf:include <qualified-value-shape-details.ttl>;
+  mf:include <qualified-value-shape-disjoint-details.ttl>;
   mf:include <xone-details.ttl>.
