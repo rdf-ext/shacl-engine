@@ -1,0 +1,29 @@
+@prefix ex: <http://example.org/>.
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix sht: <http://www.w3.org/ns/shacl-test#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+<> a mf:Manifest;
+  mf:entries (<deactivated-false-string>).
+
+<deactivated-false-string> a sht:Validate;
+  rdfs:label "Test of deactivated annotation with a non-boolean value";
+  mf:action [
+      sht:dataGraph <>;
+      sht:shapesGraph <>
+    ];
+  mf:result [ a sh:ValidationReport;
+      sh:conforms false;
+      sh:result [ a sh:ValidationResult;
+          sh:focusNode "Hello";
+          sh:resultSeverity sh:Violation;
+          sh:sourceConstraintComponent sh:HasValueConstraintComponent;
+          sh:sourceShape ex:Shape
+        ]
+    ].
+
+ex:Shape a sh:NodeShape;
+  sh:targetNode "Hello";
+  sh:hasValue "x" {| sh:deactivated "false" |}.

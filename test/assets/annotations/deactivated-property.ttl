@@ -1,0 +1,36 @@
+@prefix ex: <http://example.org/>.
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix sht: <http://www.w3.org/ns/shacl-test#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+<> a mf:Manifest;
+  mf:entries (<deactivated-property>).
+
+<deactivated-property> a sht:Validate;
+  rdfs:label "Test of deactivated annotation on one of multiple property shapes";
+  mf:action [
+      sht:dataGraph <>;
+      sht:shapesGraph <>
+    ];
+  mf:result [ a sh:ValidationReport;
+      sh:conforms false;
+      sh:result [ a sh:ValidationResult;
+          sh:focusNode ex:Alice;
+          sh:resultPath ex:b;
+          sh:resultSeverity sh:Violation;
+          sh:sourceConstraintComponent sh:MinCountConstraintComponent;
+          sh:sourceShape ex:PropertyB
+        ]
+    ].
+
+ex:Alice a ex:Person.
+
+ex:Shape a sh:NodeShape;
+  sh:targetClass ex:Person;
+  sh:property ex:PropertyA {| sh:deactivated true |};
+  sh:property ex:PropertyB.
+
+ex:PropertyA sh:path ex:a; sh:minCount 1.
+ex:PropertyB sh:path ex:b; sh:minCount 1.

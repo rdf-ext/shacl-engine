@@ -1,0 +1,15 @@
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+
+<> a mf:Manifest;
+  rdfs:label "Constraint triple annotation tests";
+  mf:include
+    <deactivated-closed.ttl>,
+    <deactivated-false-string.ttl>,
+    <deactivated-iri.ttl>,
+    <deactivated-multiple-values.ttl>,
+    <deactivated-property.ttl>,
+    <message-multiple-values.ttl>,
+    <message-not-inherited.ttl>,
+    <severity-multiple-annotations.ttl>,
+    <severity-multiple-values.ttl>.

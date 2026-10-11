@@ -1,0 +1,35 @@
+@prefix ex: <http://example.org/>.
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix sht: <http://www.w3.org/ns/shacl-test#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+<> a mf:Manifest;
+  mf:entries (<message-not-inherited>).
+
+<message-not-inherited> a sht:Validate;
+  rdfs:label "Test that an annotation on sh:property does not apply to the results of the property shape";
+  mf:action [
+      sht:dataGraph <>;
+      sht:shapesGraph <>
+    ];
+  mf:result [ a sh:ValidationReport;
+      sh:conforms false;
+      sh:result [ a sh:ValidationResult;
+          sh:focusNode ex:Alice;
+          sh:resultMessage "Property message";
+          sh:resultPath ex:a;
+          sh:resultSeverity sh:Violation;
+          sh:sourceConstraintComponent sh:MinCountConstraintComponent;
+          sh:sourceShape ex:PropertyA
+        ]
+    ].
+
+ex:Alice a ex:Person.
+
+ex:Shape a sh:NodeShape;
+  sh:targetClass ex:Person;
+  sh:property ex:PropertyA {| sh:message "Annotation message"; sh:severity sh:Warning |}.
+
+ex:PropertyA sh:path ex:a; sh:minCount 1; sh:message "Property message".
