@@ -11,5 +11,7 @@
     <inheritance-multi-level-implicit-target.ttl>,
     <not-multi.ttl>,
     <qualifiedValueShape-node.ttl>,
+    <qualifiedValueShapesDisjoint-no-siblings.ttl>,
+    <qualifiedValueShapesDisjoint-overlap.ttl>,
     <targetNode-non-existing.ttl>,
     <uniqueLang-false.ttl>.
