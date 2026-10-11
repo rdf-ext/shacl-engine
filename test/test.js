@@ -5,6 +5,7 @@ import Test from './support/Test.js'
 (async () => {
   try {
     const files = {
+      annotations: 'assets/annotations/manifest.ttl',
       'coverage report': 'assets/coverage/manifest.ttl',
       custom: 'assets/custom/manifest.ttl',
       'data-shapes test suite': 'assets/data-shapes/manifest.ttl',

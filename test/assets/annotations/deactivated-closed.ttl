@@ -1,0 +1,38 @@
+@prefix ex: <http://example.org/>.
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix sht: <http://www.w3.org/ns/shacl-test#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+<> a mf:Manifest;
+  mf:entries (<deactivated-closed>).
+
+<deactivated-closed> a sht:Validate;
+  rdfs:label "Test of closed shape with a deactivated property shape annotation";
+  mf:action [
+      sht:dataGraph <>;
+      sht:shapesGraph <>
+    ];
+  mf:result [ a sh:ValidationReport;
+      sh:conforms false;
+      sh:result [ a sh:ValidationResult;
+          sh:focusNode ex:Alice;
+          sh:resultPath ex:a;
+          sh:resultSeverity sh:Violation;
+          sh:sourceConstraintComponent sh:ClosedConstraintComponent;
+          sh:sourceShape ex:Shape;
+          sh:value "A"
+        ]
+    ].
+
+ex:Alice ex:a "A"; ex:b "B".
+
+ex:Shape a sh:NodeShape;
+  sh:targetNode ex:Alice;
+  sh:closed true;
+  sh:property ex:PropertyA {| sh:deactivated true |};
+  sh:property ex:PropertyB.
+
+ex:PropertyA sh:path ex:a.
+ex:PropertyB sh:path ex:b.
