@@ -6,7 +6,12 @@
   rdfs:comment "Tests are based on tests from rdf-validate-shacl.";
   mf:include
     <closed-false.ttl>,
+    <disjoint-multi.ttl>,
+    <equals-multi.ttl>,
+    <hasValue-multi.ttl>,
     <lessThan-more-types.ttl>,
+    <lessThan-multi.ttl>,
+    <lessThanOrEquals-multi.ttl>,
     <inheritance-multi-level.ttl>,
     <inheritance-multi-level-implicit-target.ttl>,
     <not-multi.ttl>,
