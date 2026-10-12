@@ -1,0 +1,41 @@
+@prefix ex: <http://example.org/>.
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix sht: <http://www.w3.org/ns/shacl-test#>.
+
+<> a mf:Manifest;
+  mf:entries (<path-iri-node>).
+
+<path-iri-node> a sht:Validate;
+  rdfs:label "Test of an inverse path whose path node is an IRI (a skolemized blank node)";
+  mf:action [
+      sht:dataGraph <>;
+      sht:shapesGraph <>
+    ];
+  mf:result [ a sh:ValidationReport;
+      sh:conforms false;
+      sh:result [ a sh:ValidationResult;
+          sh:focusNode ex:Set1;
+          sh:resultPath [ sh:inversePath ex:output ];
+          sh:resultSeverity sh:Violation;
+          sh:sourceConstraintComponent sh:ClassConstraintComponent;
+          sh:sourceShape ex:ProducerShape;
+          sh:value ex:Producer1
+        ]
+    ].
+
+ex:SetShape a sh:NodeShape;
+  sh:targetClass ex:Set;
+  sh:property ex:ProducerShape.
+
+ex:ProducerShape
+  sh:path ex:InverseOutput;
+  sh:class ex:Agent.
+
+ex:InverseOutput sh:inversePath ex:output.
+
+ex:Set1 a ex:Set.
+
+ex:Producer1 ex:output ex:Set1.

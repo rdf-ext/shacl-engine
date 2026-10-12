@@ -10,6 +10,7 @@
     <inheritance-multi-level.ttl>,
     <inheritance-multi-level-implicit-target.ttl>,
     <not-multi.ttl>,
+    <path-iri-node.ttl>,
     <qualifiedValueShape-node.ttl>,
     <qualifiedValueShapesDisjoint-no-siblings.ttl>,
     <qualifiedValueShapesDisjoint-overlap.ttl>,
