@@ -8,6 +8,7 @@
     <closed-false.ttl>,
     <disjoint-multi.ttl>,
     <equals-multi.ttl>,
+    <hasValue-multi.ttl>,
     <lessThan-more-types.ttl>,
     <inheritance-multi-level.ttl>,
     <inheritance-multi-level-implicit-target.ttl>,
