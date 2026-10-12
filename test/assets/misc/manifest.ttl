@@ -10,6 +10,7 @@
     <equals-multi.ttl>,
     <hasValue-multi.ttl>,
     <lessThan-more-types.ttl>,
+    <lessThan-multi.ttl>,
     <inheritance-multi-level.ttl>,
     <inheritance-multi-level-implicit-target.ttl>,
     <not-multi.ttl>,
